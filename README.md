@@ -1,4 +1,3 @@
-````markdown
 # Guia de Uso da Jikan API (Anime)
 
 Este documento serve como referência rápida para usar a [Jikan API](https://jikan.moe/) e obter informações sobre animes, gêneros, personagens, staff, episódios e rankings.
