@@ -44,7 +44,7 @@
      // Essa função irá atualizar uma linha específica no banco de dados 
      public function Update(ListaFavoritos $l) { 
       
-         $sql = 'UPDATE ListaFavoritos SET id_usuario = ?, mal_id = ?, data_adicao = ?, nota_pessoal = ?, status = ? WHERE id = ?'; 
+         $sql = 'UPDATE ListaFavoritos SET id_usuario = ?, mal_id = ?, data_adicao = ?, nota_pessoal = ?, status = ? WHERE id_lista = ?'; 
   
          $stmt = Conn::getConn()->prepare($sql); 
   
@@ -64,7 +64,7 @@
      public function Delete($c) { 
   
          // Vamos deletar dessa forma a linha que queremos 
-         $sql = 'DELETE FROM ListaFavoritos WHERE id = ?'; 
+         $sql = 'DELETE FROM ListaFavoritos WHERE id_lista = ?'; 
          $stmt = Conn::getConn()->prepare($sql); 
          $stmt->bindValue(1, $c); 
          
