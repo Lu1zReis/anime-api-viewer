@@ -2,9 +2,9 @@
   
  namespace connect; 
   
- class ListaFavoritosDao { 
+ class UsuarioDAO { 
   
-     public function Create(ListaFavoritos $u) { 
+     public function Create(Usuario $u) { 
   
         // podemos passar os valores no VALUES como (?,?) e depois colocar em sequência a numeração para inserir no banco de dados  
         $sql = 'INSERT INTO usuario (nome,email,senha_hash,data_criacao) VALUES (?,?,?,?)'; 
@@ -36,12 +36,10 @@
              // Caso não haja, irá retornar um array vazio 
              return []; 
          endif; 
-  
-  
      } 
   
      // Essa função irá atualizar uma linha específica no banco de dados 
-     public function Update(ListaFavoritos $u) { 
+     public function Update(Usuario $u) { 
       
          $sql = 'UPDATE usuario SET nome = ?, email = ?, senha_hash = ?, data_criacao = ? WHERE id_user = ?'; 
   
@@ -70,4 +68,18 @@
         else return false;
      } 
   
+     public function ExisteUsuario($email, $senha) {
+        $sql = 'SELECT * FROM usuario WHERE email = ? AND senha_hash = ?'; 
+        $stmt = Conn::getConn()->prepare($sql); 
+        $stmt->bindValue(1, $email); 
+        $stmt->bindValue(2, $senha); 
+        $stmt->execute(); 
+  
+        if ($stmt->fetch()) {
+            return true;
+        } else {
+            return false;
+        }
+
+     }
  }
