@@ -18,7 +18,7 @@
             $usuario = new connect\UsuarioDAO();
             if ($usuario->ExisteUsuario($email, $senha)):
                 $_SESSION['logado']= true;
-			    header('Location: ../../frontend/index.html');
+			    header('Location: ../../frontend/index.php');
             else:
                 $_SESSION['msg'][] = "<script>alert('Email ou Senha incorretas')</script>";  
     			header('Location: ../../frontend/public/login.php');

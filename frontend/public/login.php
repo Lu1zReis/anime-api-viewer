@@ -22,6 +22,6 @@
         Senha: <input type="password" name="senha"><br>
         <input type="submit" name="logar">
     </form>
-    <a href="../public/cadastrar.html">Casdastrar-se aqui</a>
+    <a href="../public/cadastrar.php">Casdastrar-se aqui</a>
 </body>
 </html>

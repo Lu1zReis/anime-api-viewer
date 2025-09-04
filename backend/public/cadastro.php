@@ -33,7 +33,7 @@
 
             if ($usuarioDAO->Create($usuario)) {
                 $_SESSION['msg'][] = "<script>alert('Usuário cadastrado com sucesso!')</script>";
-    			header('Location: ../../frontend/public/login.html');
+    			header('Location: ../../frontend/public/login.php');
             } else {
                 $_SESSION['msg'][] = "<script>alert('Erro ao cadastrar')</script>";
     			header('Location: ../../frontend/public/cadastrar.php');
