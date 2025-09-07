@@ -51,7 +51,7 @@ if (isset($_SESSION['logado']) and $_SESSION['logado'] > 0):
                     endforeach;
                 } else {
                     // pegando somente uma pesquisa básica 
-                    $result = $animeDAO->pegarAnime($_GET['nome']);
+                    $result = $animeDAO->pesquisarAnime($_GET['nome']);
                     if ($result['data'] != NULL):
                         $a = $result['data'][0];
             ?>

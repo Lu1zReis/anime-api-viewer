@@ -15,7 +15,7 @@ Class AnimeDAO {
         return $data;
     }
 
-    public function pegarAnime($anime) {
+    public function pesquisarAnime($anime) {
         $url = "https://api.jikan.moe/v4/anime?q=" . urlencode($anime) . "&limit=5";
 
         $response = file_get_contents($url);
@@ -25,8 +25,18 @@ Class AnimeDAO {
         return $data;
     }
 
-    public function pegarAnimePorGenero($id_genero) {
-        $url = "https://api.jikan.moe/v4/genres/anime";
+    public function pegarAnime($id) {
+        $url = "https://api.jikan.moe/v4/anime/".$id;
+
+        $response = file_get_contents($url);
+
+        $data = json_decode($response, true);
+
+        return $data;
+    }
+
+    public function pegarAnimesRelacionado($id) {
+        $url = "https://api.jikan.moe/v4/anime/".$id."/relations";
 
         $response = file_get_contents($url);
 
