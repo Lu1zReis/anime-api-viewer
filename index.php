@@ -3,7 +3,6 @@
     session_start();
 
     if (isset($_SESSION['logado'])):
-        unset($_SESSION['logado']);
 ?>
 
 <!DOCTYPE html>
@@ -14,13 +13,13 @@
     <title>Document</title>
 </head>
 <body>
-    Logado
+    
 </body>
 </html>
 
 <?php
 
     else: 
-        header("Location: public/login.php");
+        header("Location: frontend/public/login.php");
     endif;
 ?>
