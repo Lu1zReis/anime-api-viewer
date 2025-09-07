@@ -68,18 +68,35 @@
         else return false;
      } 
   
-     public function ExisteUsuario($email, $senha) {
-        $sql = 'SELECT * FROM usuario WHERE email = ? AND senha_hash = ?'; 
-        $stmt = Conn::getConn()->prepare($sql); 
-        $stmt->bindValue(1, $email); 
-        $stmt->bindValue(2, $senha); 
-        $stmt->execute(); 
-  
-        if ($stmt->fetch()) {
-            return true;
-        } else {
-            return false;
+        public function ExisteUsuario($email, $senha) { 
+            $sql = 'SELECT id_user FROM usuario WHERE email = ? AND senha_hash = ?'; 
+            $stmt = Conn::getConn()->prepare($sql); 
+            $stmt->bindValue(1, $email); 
+            $stmt->bindValue(2, $senha); 
+            $stmt->execute(); 
+
+            $usuario = $stmt->fetch(\PDO::FETCH_ASSOC); 
+
+            if ($usuario) {
+                return $usuario['id_user']; 
+            } else {
+                return 0; 
+            }
         }
 
-     }
+    public function PegaUsuario($id) { 
+        $sql = 'SELECT * FROM usuario WHERE id_user = ?'; 
+        $stmt = Conn::getConn()->prepare($sql); 
+        $stmt->bindValue(1, $id); 
+        $stmt->execute(); 
+
+        $usuario = $stmt->fetch(\PDO::FETCH_ASSOC); 
+
+        if ($usuario) {
+            return $usuario; 
+        } else {
+            return null; 
+        }
+    }
+
  }

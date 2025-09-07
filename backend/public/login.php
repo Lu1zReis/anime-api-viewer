@@ -1,6 +1,6 @@
 <?php
-    require_once "../App/Model/Usuario/UsuarioDAO.php";
     require_once "../App/Model/Conn.php";
+    require_once "../App/Model/Usuario/UsuarioDAO.php";
     session_start();
     if (isset($_POST['logar'])) {
         
@@ -16,8 +16,9 @@
 			header('Location: ../../frontend/public/login.php');
         else:
             $usuario = new connect\UsuarioDAO();
-            if ($usuario->ExisteUsuario($email, $senha)):
-                $_SESSION['logado']= true;
+            $id = $usuario->ExisteUsuario($email, $senha);
+            if ($id > 0):
+                $_SESSION['logado']= $id;
 			    header('Location: ../../index.php');
             else:
                 $_SESSION['msg'][] = "<script>alert('Email ou Senha incorretas')</script>";  
