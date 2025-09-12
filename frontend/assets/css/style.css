@@ -38,6 +38,10 @@ header {
   border-radius: 8px;
 }
 
+.botao-deslogar {
+  color: black;
+}
+
 /* Filtros */
 .filtros {
   margin: 20px auto;

@@ -1,6 +1,8 @@
 <?php
 
 session_start();
+if (isset($_POST['deslogar'])) unset($_SESSION['logado']);
+
 if (isset($_SESSION['logado']) and $_SESSION['logado'] > 0):
     require_once "backend/App/Model/Anime/AnimeDAO.php";
     require_once "backend/App/Model/Usuario/UsuarioDAO.php";
@@ -24,7 +26,10 @@ if (isset($_SESSION['logado']) and $_SESSION['logado'] > 0):
     <header>
         <a href="index.php" class="header-nome">Favorite Anime</a>
         <div class="header-perfil">
-            <?php echo $usuario['nome']; // exibindo nome do usuario logado ?>
+            <form action="" method="POST">
+                <?php echo $usuario['nome']; // exibindo nome do usuario logado ?>
+                <input type="submit" value="Deslogar" name="deslogar" class="botao-deslogar">
+            </form>
         </div>
     </header>
     <main>
