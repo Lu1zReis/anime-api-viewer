@@ -1,13 +1,20 @@
 <?php
 
 session_start();
+if (isset($_SESSION['msg'])) {
+    echo "<script>alert('".$_SESSION['msg']."');</script>";
+    unset($_SESSION['msg']);
+}
+
 if (isset($_SESSION['logado']) and $_SESSION['logado'] > 0):
     if (isset($_GET['id'])) {
         require_once "../../backend/App/Model/Anime/AnimeDAO.php";
         require_once "../../backend/App/Model/Usuario/UsuarioDAO.php";
+        require_once "../../backend/App/Model/ListaFavoritos/ListaFavoritosDAO.php";
         require_once "../../backend/App/Model/Conn.php";
 
         $usuarioDAO = new connect\UsuarioDAO();
+        $listaDAO = new connect\ListaFavoritosDAO();
         $usuario = $usuarioDAO->PegaUsuario($_SESSION['logado']); // pega o id do usuario logado
 
         $animeid = $_GET['id'];
@@ -70,6 +77,26 @@ if (isset($_SESSION['logado']) and $_SESSION['logado'] > 0):
             </div>
         </div>
     </footer>
+    <div class="comentarios">
+        <form action="../../backend/public/card.php" method="POST">
+            <input type="text" name="comentario" placeholder="Deixe seu comentário...">
+            <input type="hidden" name="id" value="<?php echo $animeid; ?>">
+            <button type="submit" name="enviar">Enviar</button>
+        </form>
+        <div class="comentarios-lista">
+            <?php
+                $listaDAO = new connect\ListaFavoritosDAO();
+                $retorno = $listaDAO->Read();
+
+                foreach ($retorno as $comentario) {
+                    if ($comentario['mal_id'] == $animeid) {
+                        $usuario = $usuarioDAO->PegaUsuario($comentario['id_usuario']);
+                        echo "<div class='comentario-item'>{$usuario['nome']}: {$comentario['nota_pessoal']}</div>";
+                    }
+                }
+            ?>
+        </div>
+    </div>
 </body>
 </html>
 
