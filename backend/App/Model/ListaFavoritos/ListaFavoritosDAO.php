@@ -71,5 +71,14 @@
         if ($stmt->execute()) return true;
         else return false;
      } 
-  
+
+    public function EncontrarAnime($userId, $malId) {
+        $sql = "SELECT * FROM ListaFavoritos WHERE id_usuario = ? AND mal_id = ?";
+        $stmt = Conn::getConn()->prepare($sql);
+        $stmt->bindValue(1, $userId);
+        $stmt->bindValue(2, $malId);
+        $stmt->execute();
+        return $stmt->fetch(\PDO::FETCH_ASSOC); 
+    }
+
  }

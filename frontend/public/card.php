@@ -40,8 +40,29 @@ if (isset($_SESSION['logado']) and $_SESSION['logado'] > 0):
     </header>
     <main>
         <img src="<?php echo $a['images']['jpg']['image_url']; ?>" alt="<?php echo $a['title']; ?>" class="card-foto">
-        <div class="card-nome"><?php echo $a['title']; ?></div>
-        <div class="card-nome"><?php echo $a['title_japanese']; ?></div>
+        <div class="card-header">
+            <div class="card-titulo">
+                <div class="card-nome"><?php echo $a['title']; ?></div>
+                <div class="card-nome"><?php echo $a['title_japanese']; ?></div>
+            </div>
+            <div class="card-status">
+                <form action="../../backend/public/card.php" method="POST">
+                    <?php
+                        $favorito = $listaDAO->EncontrarAnime($_SESSION['logado'], $animeid);
+                        if (!$favorito) {
+                            $favorito = ['status' => 3]; // padrão para "Não Assistido"
+                        }
+                    ?>
+                    <select name="status" id="status">
+                        <option value="1" <?php echo ($favorito['status'] == 1) ? 'selected' : ''; ?>>Assistido</option>
+                        <option value="2" <?php echo ($favorito['status'] == 2) ? 'selected' : ''; ?>>Assistindo</option>
+                        <option value="3" <?php echo ($favorito['status'] == 3) ? 'selected' : ''; ?>>Não Assistido</option>
+                    </select>
+                    <input type="hidden" name="id" value="<?php echo $animeid; ?>">
+                    <button type="submit" name="adicionar">Marcar</button>
+                </form>
+            </div>
+        </div>
         <div class="card-sinopse"><?php echo $a['synopsis']; ?></div>
         <div class="informacoes">
             <div class="card-episodios"><?php echo "<h3>Episódios: </h3>".$a['episodes']; ?></div>
