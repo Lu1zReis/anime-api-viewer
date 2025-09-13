@@ -134,3 +134,60 @@ footer {
     font-size: 0.85rem;
     color: #bbb;
 }
+.comentarios {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f4f4f4;
+    border-radius: 10px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.comentarios form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.comentarios input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.comentarios button {
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.comentarios button:hover {
+    background-color: #45a049;
+}
+
+.comentarios-lista {
+    margin-top: 10px;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.comentario-item {
+    padding: 8px 12px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.comentario-item strong {
+    color: #333;
+}

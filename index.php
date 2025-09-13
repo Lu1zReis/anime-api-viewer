@@ -26,7 +26,7 @@ if (isset($_SESSION['logado']) and $_SESSION['logado'] > 0):
     <header>
         <a href="index.php" class="header-nome">Favorite Anime</a>
         <div class="header-perfil">
-            <form action="" method="POST">
+            <form action="" method="POST" class="form-deslogar">
                 <?php echo $usuario['nome']; // exibindo nome do usuario logado ?>
                 <input type="submit" value="Deslogar" name="deslogar" class="botao-deslogar">
             </form>
